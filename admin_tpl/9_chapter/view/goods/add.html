@@ -320,25 +320,6 @@
             $(".buttons").click();
         });
         layui.form.on('submit(*)', function (data) {
-            // 表格数据 提交 处理
-            // goods_name: "合理咯"
-            // goods_cate: "11级分类->21级分类->21级分类"
-            // subtitle: "副标题"
-            // goods_sales: "促销语"
-            // goods_word: "关键词"
-            // goods_unit: "单位"
-            // stock_show: "1" 是否显示库存 0 不显示
-            // goods_stock: "100"
-            // goods_date: "2020-01-06"
-            // spec: 1  , 1 单规格 2 多规格
-
-
-            // goods_cate_ids  分类id
-            // main_img 主图
-            // banner_img 轮播图多图
-            // show_img 展示图多图
-            // add_spec_arr 提交的规格数据
-            // tabPut
             let goods_data = {
                 ...data.field,
                 category_id: $('#goods_cate').attr('data-ids'),
@@ -369,19 +350,7 @@
         let request = getRequest()
         let editid = request['id'];
         let objEdit = {
-            goods_name: "商品名称",
-            goods_cate: "11级分类->21级分类->20级分类",
-            subtitle: "副标题",
-            goods_sales: "促销语",
-            goods_word: "精品",
-            goods_unit: "件",
-            stock_show: "1",
-            goods_stock: "10",
-            goods_date: "2020-01-22",
-            spec: "2",
-            goods_cate_ids: "1,21,20",
-            content: '<b>hello world</b>',
-            main_img: "http://s6.gigacircle.com/media/s6_53e19ef351d04.jpg",
+            // 加上常规的 表字段内容
             add_spec_arr:[
                 {   id: "1",
                     name: "颜色规格",
