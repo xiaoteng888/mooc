@@ -21,7 +21,7 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">商品名称</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="goods_name" autocomplete="off" class="layui-input">
+                                <input type="text" name="name" autocomplete="off" class="layui-input">
                             </div>
                         </div>
 
@@ -50,25 +50,31 @@
                 <table class="layui-table">
                     <colgroup>
                         <col width="40">
-                        <col width="180">
-                        <col width="180">
+                        <col width="60">
+                        <col width="320">
                         <col width="130">
                         <col width="70">
+                        <col width="200">
+                        <col width="100">
                         <col width="85">
                     </colgroup>
                     <thead>
                     <tr>
+                        <th>id</th>
                         <th>排序</th>
                         <th>商品名称</th>
                         <th class="text-center">商品图片</th>
+                        <th class="text-center">库存</th>
                         <th class="text-center">发布时间</th>
                         <th class="text-center">状 态</th>
+                        <th class="text-center">是否推荐</th>
                         <th>操作管理</th>
                     </tr>
                     </thead>
                     <tbody>
                     <!--一级类目循环-->
                     <tr>
+                        <td>1</td>
                         <td>
                             <div class="layui-input-inline layui-text-center">
                                 <input type="text" value="1" data-id="1" class="changeSort layui-input">
@@ -76,10 +82,16 @@
                         </td>
                         <td>商品1</td>
                         <td class="show-img">
-                            <img  src="../images/default.png" data-src="https://tse4-mm.cn.bing.net/th/id/OIP.1e3YVW946dgy5uJH764JXwHaFj?w=261&h=185&c=7&o=5&pid=1.7"  style="width: 24px;height: 24px;" />
+                            <img  src="../images/default.png" data-src=""  style="width: 24px;height: 24px;" />
                         </td>
+                        <td>123</td>
                         <td>发布时间</td>
-                        <td>状态</td>
+                        <td><input type="checkbox" checked name="status" lay-skin="switch"
+                            lay-filter="switchStatus"
+                            lay-text="开启|关闭"></td>
+                        <td><input type="checkbox" checked name="is_index_recommend" lay-skin="switch"
+                                   lay-filter="isIndexRecommend"
+                                   lay-text="是|否"></td>
                         <td>
                             <a class="layui-btn layui-btn-xs  edit" lay-event="edit">编辑</a>
                             <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete del-child" data-ptype="1"
@@ -116,27 +128,10 @@
             var result = JSON.stringify(data.field);
 
         });
-        $('.edit').on('click',function(){
-            let id = $(this).attr('data-id');
-            window.location = './goods-add.html?id=1';
-        })
-         $('.add').on('click',function(){
-             window.location = './goods-add.html';
-        })
 
-        // 进行排序
-        $('.changeSort').on('change',function () {
-            let id = $(this).attr('data-id');
-            let val = $(this).val();
-            if(!val){
-                return;
-            }
-            let url = '{:url("goods/listorder")}?id=' + id + '&sort='+val;
-            layObj.get(url,function (res) {
-                console.log(res, 'sort');
-            })
 
-        })
+
+
         $('.show-img').on('click',function(){
             var imgurl=$(this).find('img').attr('data-src');
             //页面层
