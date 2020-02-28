@@ -49,7 +49,8 @@ CREATE TABLE `mall_goods` (
   `status` tinyint unsigned NOT NULL DEFAULT '0',
   `listorder` int unsigned NOT NULL DEFAULT '0' COMMENT '排序字段',
   PRIMARY KEY (`id`),
-  KEY `title` (`title`)
+  KEY `title` (`title`),
+  KEY `category_path_id` (`category_path_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8;
 
 SET FOREIGN_KEY_CHECKS = 1;
