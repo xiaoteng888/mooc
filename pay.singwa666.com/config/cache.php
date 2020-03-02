@@ -26,10 +26,9 @@ return [
         ],
         // redis 缓存数据库
         'redis' => [
-            'host'       => '117.78.3.212',
-            'port'       => 6380,
+            'host'       => '',
+            'port'       => ,
             'type'       => 'redis',
-            'password'   => 'abc_mp&^901#sing',
         ],
     ],
 ];
