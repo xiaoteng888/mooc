@@ -65,7 +65,8 @@ class Goods extends  BaseModel {
     public function getNormalGoodsByCondition($where, $field = true, $limit = 5) {
         $order = ["listorder" => "desc", "id" => "desc"];
 
-        $where["status"] = config("status.success");
+        //$where["status"] = config("status.success");   // 修改如下内容，
+        $where["status"] = config("status.mysql.table_normal");
 
         $result = $this->where($where)
             ->order($order)
@@ -96,7 +97,7 @@ class Goods extends  BaseModel {
         $order = ["listorder" => "desc", "id" => "desc"];
 
         $result = $this->whereFindInSet("category_path_id", $categoryId)
-            ->where("status", "=", config("status.success"))
+            ->where("status", "=", config("status.mysql.table_normal"))
             ->order($order)
             ->field($field)
             ->limit(10)
@@ -111,7 +112,7 @@ class Goods extends  BaseModel {
         if(isset($data['category_path_id'])) {
             $res = $this->whereFindInSet("category_path_id", $data['category_path_id']);
         }
-        $list = $res->where("status", "=", config("status.success"))
+        $list = $res->where("status", "=", config("status.mysql.table_normal"))
             ->order($order)
             ->field($field)
             ->paginate($num);
