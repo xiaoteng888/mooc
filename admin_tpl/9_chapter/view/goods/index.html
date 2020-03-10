@@ -16,12 +16,12 @@
         <fieldset class="layui-elem-field layuimini-search">
             <legend>搜索信息</legend>
             <div style="margin: 10px 10px 10px 10px">
-                <form class="layui-form layui-form-pane" action="">
+                <form class="layui-form layui-form-pane" action="{:url('index')}" method="GET">
                     <div class="layui-form-item">
                         <div class="layui-inline">
                             <label class="layui-form-label">商品名称</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="name" autocomplete="off" class="layui-input">
+                                <input type="text" name="title" autocomplete="off" class="layui-input">
                             </div>
                         </div>
 
@@ -29,13 +29,14 @@
                             <label class="layui-form-label">发布时间</label>
                             <div class="layui-input-inline" style="width: 280px;">
                                 <div class="layui-input-inline" style="width: 280px;">
-                                    <input type="text" name="create_time" class="layui-input" id="test10"
+                                    <input type="text" name="time" class="layui-input" id="test10"
                                            placeholder=" - ">
                                 </div>
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <a class="layui-btn" lay-submit="" lay-filter="data-search-btn">搜索</a>
+                            <button class="layui-btn" lay-submit="" lay-filter="data-search-btn">搜索</button>
+
                         </div>
                     </div>
                 </form>
@@ -111,9 +112,10 @@
 <script>
     // 显示图片
 
-    layui.use(['form', 'table', 'laydate','jquery'], function () {
+    layui.use(['form', 'table', 'laydate','jquery','laypage'], function () {
         var $ = layui.jquery,
             form = layui.form,
+            laypage = layui.laypage,
            laydate = layui.laydate;
 
         //日期时间范围 搜索
@@ -122,15 +124,6 @@
             , type: 'datetime'
             , range: true
         });
-
-        // 监听搜索操作
-        form.on('submit(data-search-btn)', function (data) {
-            var result = JSON.stringify(data.field);
-
-        });
-
-
-
 
         $('.show-img').on('click',function(){
             var imgurl=$(this).find('img').attr('data-src');
