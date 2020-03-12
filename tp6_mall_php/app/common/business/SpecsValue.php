@@ -99,9 +99,9 @@ class SpecsValue extends BusBase
 
     public function dealSpecsValue($skuIdSpecsValueIds) {
         $ids = array_values($skuIdSpecsValueIds);
-        $ids = implode(",", $ids);
-        $ids = array_unique(explode(",", $ids));
-
+        //$ids = implode(",", $ids);
+        //$ids = array_unique(explode(",", $ids));
+        $ids = array_unique($ids); // @优化
 
         $result = $this->getNormalInIds($ids);
         if(!$result) {
