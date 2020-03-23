@@ -9,6 +9,7 @@ class AuthBase extends ApiBase {
     public $appId = "";
     public $token = "";
     public $time = 0;
+    public $userId = 0;
     public function initialize() {
         //
         //59a387e24211c4feb09ea27da9da8d98 1582452200
@@ -20,7 +21,8 @@ class AuthBase extends ApiBase {
         $this->appId = input("param.appid", "", "trim");
         $this->token = input("param.token", "", "trim");
         $this->time = input("param.time", 0, "intval");
-        if(!$this->appId || !$this->token || !$this->time) {
+        $this->userId = input("param.user_id", 0, "intval");
+        if(!$this->appId || !$this->token || !$this->time || !$this->userId) {
             //$this->show("appid,token,time字段不能为空");
         }
         $this->checkAuth();
@@ -41,7 +43,8 @@ class AuthBase extends ApiBase {
         $data = [
             $this->time,
             $this->appId,
-            $app["key"]
+            $app["key"],
+            $this->userId,
         ];
         // 时间检验
         if ($app['expire'] + $this->time < time() ) {
