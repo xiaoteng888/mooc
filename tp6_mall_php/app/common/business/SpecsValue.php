@@ -99,9 +99,12 @@ class SpecsValue extends BusBase
 
     public function dealSpecsValue($skuIdSpecsValueIds) {
         $ids = array_values($skuIdSpecsValueIds);
-        //$ids = implode(",", $ids);
-        //$ids = array_unique(explode(",", $ids));
-        $ids = array_unique($ids); // @优化
+        // 如果是多sku组合 使用下面的
+        $ids = implode(",", $ids);
+        $ids = array_unique(explode(",", $ids));
+
+        // 如果是单sku的用下面的 ,  整体来说直接用上面的即可
+        /////$ids = array_unique($ids);
 
         $result = $this->getNormalInIds($ids);
         if(!$result) {
